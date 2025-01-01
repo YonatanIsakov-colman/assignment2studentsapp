@@ -25,25 +25,24 @@ class NewStudentActivity : AppCompatActivity() {
             insets
         }
 
-        val saveButton: Button = findViewById(R.id.add_student_save_button)
-        val cancelButton: Button = findViewById(R.id.add_student_cancel_button)
-        val nameTextField: EditText = findViewById(R.id.add_student_name_text_field)
-        val idTextField: EditText = findViewById(R.id.add_student_id_text_field)
-        val phoneTextField: EditText = findViewById(R.id.add_student_phone_text_field)
-        val addressTextField: EditText = findViewById(R.id.add_student_address_text_field)
-        val checkBox = findViewById<CheckBox>(R.id.add_student_check_box)
-        val savedTextField: TextView = findViewById(R.id.add_student_success_saved_text_view)
-        val isCheckedTextView: TextView = findViewById(R.id.textView5)
+        val saveButton: Button = findViewById(R.id.edit_student_save_button)
+        val cancelButton: Button = findViewById(R.id.edit_student_cancel_button)
+        val nameTextField: EditText = findViewById(R.id.edit_student_name_text_field)
+        val idTextField: EditText = findViewById(R.id.edit_student_id_text_field)
+        val phoneTextField: EditText = findViewById(R.id.edit_student_phone_text_field)
+        val addressTextField: EditText = findViewById(R.id.edit_student_address_text_field)
+        val checkBox = findViewById<CheckBox>(R.id.edit_student_check_box)
+        val savedTextField: TextView = findViewById(R.id.edit_student_success_saved_text_view)
+        val isCheckedTextView: TextView = findViewById(R.id.edit_textView5)
 
-        checkBox.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                isCheckedTextView.visibility = View.VISIBLE
-            } else {
-                isCheckedTextView.visibility = View.INVISIBLE
-            }
+
+        if (checkBox.isChecked) {
+            isCheckedTextView.visibility = View.VISIBLE
+        } else{
+            isCheckedTextView.visibility = View.INVISIBLE
+        }
 
         saveButton.setOnClickListener {
-//            savedTextField.text = "${nameTextField.text} ${idTextField.text}  ${phoneTextField.text} ${addressTextField.text}  ${checkBox.isChecked} is saved...!!!"
             val name = nameTextField.text.toString()
             val id = idTextField.text.toString()
             val phone = phoneTextField.text.toString()
@@ -52,18 +51,17 @@ class NewStudentActivity : AppCompatActivity() {
 
 
 
-                val newStudent = Student(name, id, phone, address, isChecked)
+            val newStudent = Student(name, id, phone, address, isChecked)
 
-                Model.shared.addStudent(newStudent)
+            Model.shared.addStudent(newStudent)
 
-                savedTextField.text = "$name is saved...!!!"
-            }
+            savedTextField.text = "$name is saved...!!!"
+        }
 
-            cancelButton.setOnClickListener {
-                //finish()
-                val intent = Intent(this, StudentListActivity::class.java)
-                startActivity(intent)
-            }
+        cancelButton.setOnClickListener {
+            //finish()
+            val intent = Intent(this, StudentListActivity::class.java)
+            startActivity(intent)
         }
     }
 }
