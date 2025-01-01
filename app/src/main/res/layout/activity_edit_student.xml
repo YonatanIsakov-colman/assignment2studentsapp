@@ -115,10 +115,10 @@
             android:layout_marginEnd="16dp"
             android:backgroundTint="#009CFD"
             android:text="Cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/edit_student_delete_button"
-            tools:layout_editor_absoluteY="667dp" />
+            app:layout_constraintStart_toEndOf="@+id/edit_student_delete_button" />
 
         <Button
             android:id="@+id/edit_student_delete_button"
@@ -128,10 +128,10 @@
             android:layout_marginEnd="8dp"
             android:backgroundTint="#009CFD"
             android:text="Delete"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/edit_student_cancel_button"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/edit_student_save_button"
-            tools:layout_editor_absoluteY="667dp" />
+            app:layout_constraintStart_toEndOf="@+id/edit_student_save_button" />
 
         <Button
             android:id="@+id/edit_student_save_button"
@@ -141,10 +141,10 @@
             android:layout_marginEnd="8dp"
             android:backgroundTint="#009CFD"
             android:text="Save"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/edit_student_delete_button"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="667dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/edit_student_success_saved_text_view"
