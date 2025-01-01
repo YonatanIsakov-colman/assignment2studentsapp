@@ -42,7 +42,7 @@ class StudentDetailsActivity : AppCompatActivity() {
             checkBox.text = "Checked"
         }
         editButton.setOnClickListener{
-            val intent = Intent(this, NewStudentActivity::class.java)
+            val intent = Intent(this, EditStudentActivity::class.java)
             intent.putExtra("studentPosition",studentPosition)
             startActivity(intent)
         }
