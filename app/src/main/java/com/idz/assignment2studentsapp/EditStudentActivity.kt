@@ -1,5 +1,6 @@
 package com.idz.assignment2studentsapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -15,6 +16,7 @@ import com.idz.assignment2studentsapp.Model.Model
 import com.idz.assignment2studentsapp.Model.Student
 
 class EditStudentActivity : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,6 +27,8 @@ class EditStudentActivity : AppCompatActivity() {
             insets
         }
 
+        val studentPosition:Int = intent.getIntExtra("studentPosition",0)
+        val student = Model.shared.students[studentPosition]
 
         val saveButton: Button = findViewById(R.id.edit_student_save_button)
         val cancelButton: Button = findViewById(R.id.edit_student_cancel_button)
@@ -43,31 +47,34 @@ class EditStudentActivity : AppCompatActivity() {
             isCheckedTextView.visibility = View.INVISIBLE
         }
 
-        nameTextField.setText(intent.getStringExtra("name"))
-        idTextField.setText(intent.getStringExtra("id"))
-        phoneTextField.setText(intent.getStringExtra("phone"))
-        addressTextField.setText(intent.getStringExtra("address"))
-        checkBox.isChecked = intent.getBooleanExtra("isChecked", false)
-
+        nameTextField.setText(student.name)
+        idTextField.setText(student.id)
+        phoneTextField.setText(student.phone)
+        addressTextField.setText(student.address)
+        checkBox.isChecked = student.isChecked
 
 
         deleteButton.setOnClickListener{
-            // To Do
+            Model.shared.students.removeAt(studentPosition)
+            val intent = Intent(this, StudentListActivity::class.java)
+            startActivity(intent)
         }
 
 
         saveButton.setOnClickListener {
-            val name = nameTextField.text.toString()
-            val id = idTextField.text.toString()
-            val phone = phoneTextField.text.toString()
-            val address = addressTextField.text.toString()
-            val isChecked = checkBox.isChecked
+            student.name = nameTextField.text.toString()
+            student.id = idTextField.text.toString()
+            student.phone = phoneTextField.text.toString()
+            student.address = addressTextField.text.toString()
+            student.isChecked = checkBox.isChecked
 
-            val newStudent = Student(name, id, phone, address, isChecked)
+//            val newStudent = Student(name, id, phone, address, isChecked)
+//
+//            Model.shared.students[studentPosition]= newStudent
 
-            Model.shared.addStudent(newStudent)
-
-            savedTextField.text = "$name is saved...!!!"
+            savedTextField.text = "${student.name}  is saved...!!!"
+            val intent = Intent(this, StudentListActivity::class.java)
+            startActivity(intent)
         }
 
         cancelButton.setOnClickListener {
